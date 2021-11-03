@@ -1,0 +1,37 @@
+# Use root/example as user/password credentials
+version: "3.1"
+
+services:
+  db:
+    image: mysql
+    container_name: my_sql_test_db
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=example
+      - MYSQL_DATABASE=test
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=test
+    volumes:
+      - ./database:/var/lib/mysql
+      - ./server/data:/mnt/shared/data
+    ports:
+      - 3306:3306
+    networks:
+      - sql-network
+
+  adminer:
+    image: adminer
+    container_name: my_sql_adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - sql-network
+
+volumes:
+  database:
+
+networks:
+  sql-network:
+    driver: bridge

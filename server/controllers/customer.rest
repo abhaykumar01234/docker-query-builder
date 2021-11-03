@@ -1,0 +1,31 @@
+GET http://localhost:5000/customers HTTP/1.1
+
+###
+
+GET http://localhost:5000/customers/1 HTTP/1.1
+
+###
+
+POST http://localhost:5000/customers HTTP/1.1
+content-type: application/json
+
+{
+    "email": "rudra@gmail.com",
+    "name": "Rudra Pratap Pandey",
+    "active": false
+}
+
+###
+
+PUT http://localhost:5000/customers/3 HTTP/1.1
+content-type: application/json
+
+{
+    "email": "rudra@gmail.com",
+    "name": "Rudra Pratap Pandey",
+    "active": true
+}
+
+###
+
+DELETE http://localhost:5000/customers/2 HTTP/1.1

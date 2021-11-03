@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    padding: 1rem 10vw;
+}
+
+textarea{
+    width: 100%;
+    margin: 1rem 0;
+    outline: none;
+    padding: 1rem;
+    font-size: 1.2em;
+}
+
+button{
+    padding: 1rem 3rem;
+    margin-bottom: .5rem;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+pre{
+    background: #021e21;
+    color: #eee;
+}

@@ -2,40 +2,37 @@ import React, { useState } from 'react'
 import './App.scss'
 
 const App = () => {
-    const [query, setQuery] = useState('select * from olympic_winners limit 10');
-    const [results, setResults] = useState([]);
+    const [todos, setTodos] = useState([]);
+    const [todo, setTodo] = useState("");
 
-    const handleQuery = async (e) => {
+    const handleSubmit = e => {
         e.preventDefault();
-        try {
-            const res = await fetch('http://localhost:5000/vp/api/db', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                  },
-                body: JSON.stringify({ query })
-            })
-            const data = await res.json()
-            setResults(data)
-        } catch (err) {
-            console.error(err)
-        }
+        setTodos(t => [...t, {id: new Date().getTime(), todo}])
+        setTodo("");
+    }
+
+    const handleDelete = tid => {
+        setTodos(t => t.filter(({id}) => id !== tid))
     }
 
     return (
         <div>
-            <h1>Query Builder</h1>
+            <h1>Todo App</h1>
             <hr />
-            <form onSubmit={handleQuery}>
-                <textarea name="query" id="query" cols="30" rows="5" value={query} onChange={e => setQuery(e.target.value)}></textarea>
-                <button type="submit">Submit</button>
-            </form>
-            <pre>
-                {JSON.stringify(results, null, 2)}
-            </pre>
-
-
+            <div className="box">
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <input type="text" value={todo} onChange={e => setTodo(e.target.value)} />
+                        <button>Add</button>
+                    </div>
+                </form>
+                <ul className="lists">
+                    {todos.length > 0 
+                        ? todos.map(({id, todo}) => <li key={id}>{todo}<button onClick={() => handleDelete(id)}>x</button></li>)
+                        : <li>Please add a new Todo</li>
+                    }
+                </ul>
+            </div>
         </div>
     )
 }

@@ -25,7 +25,47 @@ button{
     font-size: 1em;
 }
 
+input[type="text"]{
+    padding: .5rem 1rem;
+    margin: 0 1rem .5rem 0;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid red;
+    font-size: 1rem;
+}
+
 pre{
     background: #021e21;
     color: #eee;
+}
+
+.box{
+    display: flex;
+    
+    form{
+        flex-basis: 50%;
+    }
+
+    ul{
+        flex-basis: 50%;
+        list-style-type: none;
+
+        li{
+            padding: 1rem;
+            background: #eee;
+            display: flex;
+            align-items: center;
+
+            &:nth-child(odd){
+                background: #ddd;
+            }
+
+            button{
+                padding: .25rem .5rem;
+                margin-left: auto;
+                background: #efefef;
+                box-shadow: 2px 3px 5px rgba(0,0,0,0.3);
+            }
+        }
+    }
 }
